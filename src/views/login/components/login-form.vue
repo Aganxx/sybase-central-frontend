@@ -1,6 +1,6 @@
 <template>
   <div class="login-form-wrapper">
-    <div class="login-form-title">{{ $t('login.form.userLogin') }}</div>
+    <div class="login-form-title">{{ $t('login.form.title') }}</div>
     <div class="login-form-sub-title">{{ $t('login.form.title') }}</div>
     <div class="login-form-error-msg">{{ errorMessage }}</div>
     <a-form
@@ -50,7 +50,6 @@
           >
             {{ $t('login.form.rememberPassword') }}
           </a-checkbox>
-          <a-link href="/admin-login">{{ $t('login.form.adminLogin') }}</a-link>
         </div>
         <a-button type="primary" html-type="submit" long :loading="loading">
           {{ $t('login.form.login') }}

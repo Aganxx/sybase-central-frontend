@@ -21,9 +21,6 @@ export async function register(registerData: LoginData) {
 export async function login(loginData: LoginData) {
   return axios.post<LoginRes>('/login', loginData);
 }
-export async function adminLogin(loginData: LoginData) {
-  return axios.post<LoginRes>('/adminLogin', loginData);
-}
 
 // export function login(data: LoginData) {
 //   return axios.post<LoginRes>('/api/user/login', data);

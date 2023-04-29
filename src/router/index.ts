@@ -27,15 +27,6 @@ const router = createRouter({
             requiresAuth: false,
           },
         },
-        {
-          path: 'admin-login',
-          name: 'admin-login',
-          component: () =>
-            import('@/views/login/components/admin-login-form.vue'),
-          meta: {
-            requiresAuth: false,
-          },
-        },
       ],
     },
     ...appRoutes,
