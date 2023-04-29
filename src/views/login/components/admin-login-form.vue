@@ -1,6 +1,6 @@
 <template>
   <div class="login-form-wrapper">
-    <div class="login-form-title">{{ $t('login.form.userLogin') }}</div>
+    <div class="login-form-title">{{ $t('login.form.adminLogin') }}</div>
     <div class="login-form-sub-title">{{ $t('login.form.title') }}</div>
     <div class="login-form-error-msg">{{ errorMessage }}</div>
     <a-form
@@ -50,7 +50,7 @@
           >
             {{ $t('login.form.rememberPassword') }}
           </a-checkbox>
-          <a-link href="/admin-login">{{ $t('login.form.adminLogin') }}</a-link>
+          <a-link href="/login">{{ $t('login.form.userLogin') }}</a-link>
         </div>
         <a-button type="primary" html-type="submit" long :loading="loading">
           {{ $t('login.form.login') }}
@@ -70,7 +70,7 @@
   import { useUserStore } from '@/store';
   import useLoading from '@/hooks/loading';
   import type { LoginData } from '@/api/user';
-  // import { register } from '@/api/user';
+  import { register } from '@/api/user';
 
   const router = useRouter();
   const { t } = useI18n();
@@ -99,9 +99,9 @@
     if (!errors) {
       setLoading(true);
       try {
-        // const res = await register(values as LoginData);
-        // console.log(`res:`, res);
-        await userStore.login(values as LoginData);
+        const res = await register(values as LoginData);
+        console.log(`res:`, res);
+        // await userStore.login(values as LoginData);
         const { redirect, ...othersQuery } = router.currentRoute.value.query;
         router.push({
           name: (redirect as string) || 'Workplace',

@@ -1,5 +1,5 @@
 export default {
-  'login.form.title': '登录 Arco Design Pro',
+  'login.form.title': '物业管理系统',
   'login.form.userName.errMsg': '用户名不能为空',
   'login.form.password.errMsg': '密码不能为空',
   'login.form.login.errMsg': '登录出错，轻刷新重试',
@@ -7,7 +7,8 @@ export default {
   'login.form.userName.placeholder': '用户名：admin',
   'login.form.password.placeholder': '密码：admin',
   'login.form.rememberPassword': '记住密码',
-  'login.form.forgetPassword': '忘记密码',
+  'login.form.userLogin': '用户登录',
+  'login.form.adminLogin': '管理员登录',
   'login.form.login': '登录',
   'login.form.register': '注册账号',
   'login.banner.slogan1': '开箱即用的高质量模板',

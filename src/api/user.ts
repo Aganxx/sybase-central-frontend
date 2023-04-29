@@ -1,6 +1,7 @@
 import axios from 'axios';
 import type { RouteRecordNormalized } from 'vue-router';
 import { UserState } from '@/store/modules/user/types';
+// user.ts
 
 export interface LoginData {
   username: string;
@@ -10,9 +11,23 @@ export interface LoginData {
 export interface LoginRes {
   token: string;
 }
-export function login(data: LoginData) {
-  return axios.post<LoginRes>('/api/user/login', data);
+
+// regiser function
+export async function register(registerData: LoginData) {
+  return axios.post<LoginRes>('/register', registerData);
 }
+
+// login function
+export async function login(loginData: LoginData) {
+  return axios.post<LoginRes>('/login', loginData);
+}
+export async function adminLogin(loginData: LoginData) {
+  return axios.post<LoginRes>('/adminLogin', loginData);
+}
+
+// export function login(data: LoginData) {
+//   return axios.post<LoginRes>('/api/user/login', data);
+// }
 
 export function logout() {
   return axios.post<LoginRes>('/api/user/logout');

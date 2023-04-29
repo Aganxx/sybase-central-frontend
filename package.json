@@ -12,20 +12,18 @@
     "preview": "npm run build && vite preview --host",
     "type:check": "vue-tsc --noEmit --skipLibCheck",
     "lint-staged": "npx lint-staged",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "run:dashboard": "cd dashboard && npm run dev",
+    "start": "npm-run-all --parallel run:dashboard dev"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
-      "prettier --write",
-      "eslint --fix"
+      "prettier --write"
     ],
     "*.vue": [
-      "stylelint --fix",
-      "prettier --write",
-      "eslint --fix"
+      "prettier --write"
     ],
     "*.{less,css}": [
-      "stylelint --fix",
       "prettier --write"
     ]
   },
@@ -36,6 +34,7 @@
     "axios": "^0.24.0",
     "dayjs": "^1.11.5",
     "echarts": "^5.4.0",
+    "laf-client-sdk": "1.0.0-beta.7",
     "lodash": "^4.17.21",
     "mitt": "^3.0.0",
     "nprogress": "^0.2.0",
