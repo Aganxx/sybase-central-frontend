@@ -56,7 +56,7 @@ const useUserStore = defineStore('user', {
     // Get user's information
     async info() {
       const res = await getUserInfo();
-
+      console.log(`res:`, res);
       this.setInfo(res.data);
     },
 

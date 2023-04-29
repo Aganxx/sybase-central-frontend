@@ -26,7 +26,7 @@ axios.interceptors.request.use(
       if (!config.headers) {
         config.headers = {};
       }
-      config.headers.Authorization = `Bearer ${token}`;
+      config.headers.Authorization = token;
     }
     return config;
   },
@@ -40,7 +40,6 @@ axios.interceptors.response.use(
   (response: AxiosResponse<HttpResponse>) => {
     const { data, status, statusText } = response;
     // if the custom code is not 20000, it is judged as an error.
-    console.log(response);
     if (status !== 200) {
       Message.error({
         content: statusText || 'Error',
@@ -49,10 +48,10 @@ axios.interceptors.response.use(
       // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
       return Promise.reject(new Error(statusText || 'Error'));
     }
-    if (!data.data) {
+    if (data.error) {
       return Promise.reject(data?.error || 'Error');
     }
-    return data;
+    return { data };
   },
   (error) => {
     Message.error({

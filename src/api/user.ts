@@ -19,7 +19,7 @@ export async function register(registerData: LoginData) {
 
 // login function
 export async function login(loginData: LoginData) {
-  return axios.post<LoginRes>('/login', loginData);
+  return axios.post('/login', loginData);
 }
 
 // export function login(data: LoginData) {
@@ -31,7 +31,7 @@ export function logout() {
 }
 
 export function getUserInfo() {
-  return axios.post<UserState>('/api/user/info');
+  return axios.get('/getUserInfo');
 }
 
 export function getMenuList() {

@@ -98,8 +98,6 @@
     if (!errors) {
       setLoading(true);
       try {
-        // const res = await register(values as LoginData);
-        // console.log(`res:`, res);
         await userStore.login(values as LoginData);
         const { redirect, ...othersQuery } = router.currentRoute.value.query;
         router.push({
