@@ -6,30 +6,20 @@ const DASHBOARD: AppRouteRecordRaw = {
   name: 'dashboard',
   component: DEFAULT_LAYOUT,
   meta: {
-    locale: 'menu.dashboard',
+    locale: '物业管理系统',
     requiresAuth: true,
     icon: 'icon-dashboard',
     order: 0,
   },
   children: [
     {
-      path: 'workplace',
-      name: 'Workplace',
-      component: () => import('@/views/dashboard/workplace/index.vue'),
+      path: 'home',
+      name: 'home',
+      component: () => import('@/views/home/index.vue'),
       meta: {
-        locale: 'menu.dashboard.workplace',
+        locale: '主页',
         requiresAuth: true,
         roles: ['*'],
-      },
-    },
-    {
-      path: 'workplace1',
-      name: 'Workplace1',
-      component: () => import('@/views/dashboard/workplace/index.vue'),
-      meta: {
-        locale: '彩蛋',
-        requiresAuth: true,
-        roles: ['admin'],
       },
     },
   ],

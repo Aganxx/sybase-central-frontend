@@ -25,6 +25,9 @@ const useUserStore = defineStore('user', {
     userInfo(state: UserState): UserState {
       return { ...state };
     },
+    getAvatar(state: UserState) {
+      return state.user?.username.substring(0, 2).toUpperCase();
+    },
   },
 
   actions: {
