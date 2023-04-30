@@ -12,21 +12,12 @@ import useAppStore from '../app';
 
 const useUserStore = defineStore('user', {
   state: (): UserState => ({
-    name: undefined,
-    avatar: undefined,
-    job: undefined,
-    organization: undefined,
-    location: undefined,
-    email: undefined,
-    introduction: undefined,
-    personalWebsite: undefined,
-    jobName: undefined,
-    organizationName: undefined,
-    locationName: undefined,
-    phone: undefined,
-    registrationDate: undefined,
-    accountId: undefined,
-    certification: undefined,
+    user: undefined,
+    building: undefined,
+    community: undefined,
+    complaint: undefined,
+    declaration: undefined,
+    payment: undefined,
     role: '',
   }),
 
@@ -65,6 +56,7 @@ const useUserStore = defineStore('user', {
       try {
         const res = await userLogin(loginForm);
         setToken(res.data.token);
+        this.role = res.data.role;
       } catch (err) {
         clearToken();
         throw err;
