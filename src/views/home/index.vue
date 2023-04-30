@@ -27,15 +27,4 @@
   .home-wrapper
     .home-content
       margin-top 30px
-      .card
-        width 460px
-        height 200px
-        border none
-        border-radius 10px
-        background rgba(255, 255, 255 .7)
-        box-shadow 0 2px 10px #00000026
-        :deep(.arco-card-header)
-          padding 15px 10px
-          margin 0 15px
-          height auto
 </style>

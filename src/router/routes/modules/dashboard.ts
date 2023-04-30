@@ -47,7 +47,7 @@ const DASHBOARD: AppRouteRecordRaw = {
       name: 'complaint',
       component: () => import('@/views/complaint/index.vue'),
       meta: {
-        locale: '住户反馈',
+        locale: '居民反馈',
         requiresAuth: true,
         roles: ['*'],
       },
@@ -57,7 +57,7 @@ const DASHBOARD: AppRouteRecordRaw = {
       name: 'declaration',
       component: () => import('@/views/declaration/index.vue'),
       meta: {
-        locale: '设施维修单',
+        locale: '设施维修',
         requiresAuth: true,
         roles: ['*'],
       },

@@ -21,7 +21,7 @@ export interface Community {
 export interface Complaint {
   community_id: string;
   content: string;
-  statue: boolean;
+  status: boolean;
   subject: string;
   time: string;
   user_id: string;
