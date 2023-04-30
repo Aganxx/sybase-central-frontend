@@ -22,6 +22,46 @@ const DASHBOARD: AppRouteRecordRaw = {
         roles: ['*'],
       },
     },
+    {
+      path: 'building',
+      name: 'building',
+      component: () => import('@/views/building/index.vue'),
+      meta: {
+        locale: '住宅信息',
+        requiresAuth: true,
+        roles: ['*'],
+      },
+    },
+    {
+      path: 'payment',
+      name: 'payment',
+      component: () => import('@/views/payment/index.vue'),
+      meta: {
+        locale: '账单管理',
+        requiresAuth: true,
+        roles: ['*'],
+      },
+    },
+    {
+      path: 'complaint',
+      name: 'complaint',
+      component: () => import('@/views/complaint/index.vue'),
+      meta: {
+        locale: '住户反馈',
+        requiresAuth: true,
+        roles: ['*'],
+      },
+    },
+    {
+      path: 'declaration',
+      name: 'declaration',
+      component: () => import('@/views/declaration/index.vue'),
+      meta: {
+        locale: '设施维修单',
+        requiresAuth: true,
+        roles: ['*'],
+      },
+    },
   ],
 };
 

@@ -9,16 +9,16 @@
           template(#title)
             .card-title {{ item.title }}
           template(#extra)
-            a-link 查看详情
+            a-link(:href="item.link") 查看详情
           .card-content {{ item.content }}
 </template>
-<script setup name="Home">
+<script setup name="Home" lang="ts">
   // data
   const cardData = [
-    { title: '住宅信息', content: 'nihao' },
-    { title: '账单管理', content: 'nihao' },
-    { title: '住户反馈于投诉', content: 'nihao' },
-    { title: '基础设施维修', content: 'nihao' },
+    { title: '住宅信息', content: 'nihao', link: '/dashboard/building' },
+    { title: '账单管理', content: 'nihao', link: '/dashboard/payment' },
+    { title: '住户反馈于投诉', content: 'nihao', link: '/dashboard/complaint' },
+    { title: '基础设施维修', content: 'nihao', link: '/dashboard/declaration' },
   ];
   // methods
   // lifecycle
