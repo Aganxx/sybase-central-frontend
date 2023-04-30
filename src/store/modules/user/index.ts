@@ -27,6 +27,8 @@ const useUserStore = defineStore('user', {
     complaint: {} as Complaint[],
     declaration: {} as Declaration[],
     payment: {} as Payment[],
+    adminsList: {} as User[],
+    usersList: {} as User[],
     role: '',
   }),
 

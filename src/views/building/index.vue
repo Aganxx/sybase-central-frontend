@@ -27,13 +27,6 @@
   const communityInfo = ref();
   const buildingInfo = ref();
   type Community = keyof typeof community.value;
-  const columns = [
-    { title: '楼栋', dataIndex: 'building' },
-    { title: '楼层', dataIndex: 'level' },
-    { title: '类型', dataIndex: 'type' },
-    { title: '入住时间', dataIndex: 'check_in_time' },
-    { title: '是否交易', dataIndex: 'state' },
-  ];
   buildingInfo.value = {
     ...building.value,
   };
@@ -49,10 +42,29 @@
         return '占地面积';
       case 'contact':
         return '联系电话';
+      case 'building':
+        return '楼栋';
+      case 'level':
+        return '楼层';
+      case 'check_in_time':
+        return '入住时间';
+      case 'state':
+        return '是否在售';
+      case 'type':
+        return '类型';
+      case 'username':
+        return '住户';
       default:
-        return key;
+        return undefined;
     }
   };
+  let columns = Object.keys(building.value[0]).map((key) => {
+    return {
+      title: getInfoTitle(key),
+      dataIndex: key,
+    };
+  });
+  columns = columns.filter((item) => item.title !== undefined);
   communityInfo.value = Object.keys(community.value)
     .map((key) => {
       return {
@@ -60,7 +72,7 @@
         value: community.value[key as Community],
       };
     })
-    .filter((item) => item.label !== '_id:');
+    .filter((item) => item.label !== 'undefined:');
   // lifecycle
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>

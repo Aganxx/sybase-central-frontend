@@ -10,6 +10,7 @@ export interface Building {
   type: string;
   user_id: string;
   _id: string;
+  username?: string;
 }
 export interface Community {
   area: string;
@@ -59,5 +60,7 @@ export interface UserState {
   complaint: Complaint[];
   declaration: Declaration[];
   payment: Payment[];
+  usersList: User[];
+  adminsList: User[];
   role: RoleType;
 }
