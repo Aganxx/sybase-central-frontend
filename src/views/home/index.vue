@@ -15,10 +15,26 @@
 <script setup name="Home" lang="ts">
   // data
   const cardData = [
-    { title: '住宅信息', content: 'nihao', link: '/dashboard/building' },
-    { title: '账单管理', content: 'nihao', link: '/dashboard/payment' },
-    { title: '住户反馈于投诉', content: 'nihao', link: '/dashboard/complaint' },
-    { title: '基础设施维修', content: 'nihao', link: '/dashboard/declaration' },
+    {
+      title: '住宅信息',
+      content: '随时查看你的房屋信息。',
+      link: '/dashboard/building',
+    },
+    {
+      title: '缴费记录',
+      content: '你的缴费小助手，再也不怕忘记费用缴纳。',
+      link: '/dashboard/payment',
+    },
+    {
+      title: '我的反馈',
+      content: '查看反馈、投诉与建议申请进度。',
+      link: '/dashboard/complaint',
+    },
+    {
+      title: '设施维修',
+      content: '关心小区基础设施，建设美丽社区。房屋损坏维修同样可申请。',
+      link: '/dashboard/declaration',
+    },
   ];
   // methods
   // lifecycle
