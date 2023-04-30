@@ -27,33 +27,45 @@
   const communityInfo = ref();
   const buildingInfo = ref();
   type Community = keyof typeof community.value;
-  communityInfo.value = Object.keys(community.value)
-    .map((key) => {
-      return {
-        label: `${key}:`,
-        value: community.value[key as Community],
-      };
-    })
-    .filter((item) => item.label !== '_id:');
-  let columns = Object.keys(building.value[0]).map((key) => {
-    return {
-      title: key.charAt(0).toUpperCase() + key.slice(1),
-      dataIndex: key,
-    };
-  });
-  columns = columns.filter((item) => item.title !== '_id');
-  columns = columns.filter((item) => item.title !== 'Community_id');
-  columns = columns.filter((item) => item.title !== 'User_id');
+  const columns = [
+    { title: '楼栋', dataIndex: 'building' },
+    { title: '楼层', dataIndex: 'level' },
+    { title: '类型', dataIndex: 'type' },
+    { title: '入住时间', dataIndex: 'check_in_time' },
+    { title: '是否交易', dataIndex: 'state' },
+  ];
   buildingInfo.value = {
     ...building.value,
   };
   // methods
   const handleClick = (record: any) => {};
+  const getInfoTitle = (key: string) => {
+    switch (key) {
+      case 'name':
+        return '小区名';
+      case 'location':
+        return '位置';
+      case 'area':
+        return '占地面积';
+      case 'contact':
+        return '联系电话';
+      default:
+        return key;
+    }
+  };
+  communityInfo.value = Object.keys(community.value)
+    .map((key) => {
+      return {
+        label: `${getInfoTitle(key)}:`,
+        value: community.value[key as Community],
+      };
+    })
+    .filter((item) => item.label !== '_id:');
   // lifecycle
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   .community-info
-    margin-top 30px
+    margin-top 10px
     padding 16px 24px 24px
     border-radius 10px
     background rgba(247, 248, 253, 1)

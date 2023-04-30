@@ -37,7 +37,7 @@ const DASHBOARD: AppRouteRecordRaw = {
       name: 'payment',
       component: () => import('@/views/payment/index.vue'),
       meta: {
-        locale: '账单管理',
+        locale: '缴费记录',
         requiresAuth: true,
         roles: ['*'],
       },

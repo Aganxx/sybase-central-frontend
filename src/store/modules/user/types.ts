@@ -40,7 +40,7 @@ export interface Payment {
   amount: string;
   building_id: string;
   community_id: string;
-  state: false;
+  state: boolean;
   time: string;
   type: string;
   _id: string;

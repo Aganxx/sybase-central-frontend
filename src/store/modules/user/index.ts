@@ -15,6 +15,7 @@ import {
   Complaint,
   Declaration,
   Payment,
+  RoleType,
 } from './types';
 import useAppStore from '../app';
 
@@ -62,6 +63,7 @@ const useUserStore = defineStore('user', {
     async info() {
       const res = await getUserInfo();
       console.log(`res:`, res);
+      this.role = localStorage.getItem('currentRole') as RoleType;
       this.setInfo(res.data);
     },
 
