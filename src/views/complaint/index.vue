@@ -1,6 +1,7 @@
 <template lang="pug">
 .complaint-wrapper
-| complaint
+  .complaint-header.header 
+    a-typography-title.title(:heading="3") 反馈中心
 </template>
 <script setup name="Complaint" lang="ts">
   // data

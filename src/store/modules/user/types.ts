@@ -53,11 +53,11 @@ export interface User {
 }
 
 export interface UserState {
-  user?: User;
-  building?: Building;
-  community?: Community;
-  complaint?: Complaint;
-  declaration?: Declaration;
-  payment?: Payment;
+  user: User;
+  building: Building[];
+  community: Community[];
+  complaint: Complaint[];
+  declaration: Declaration[];
+  payment: Payment[];
   role: RoleType;
 }

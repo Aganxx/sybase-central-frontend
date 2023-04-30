@@ -1,6 +1,7 @@
 <template lang="pug">
 .declaration-wrapper 
-| declaration
+  .declaration-header.header 
+    a-typography-title.title(:heading="3") 报修中心
 </template>
 <script setup name="Declaration" lang="ts">
   // data

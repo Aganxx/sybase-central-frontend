@@ -7,17 +7,25 @@ import {
 } from '@/api/user';
 import { setToken, clearToken } from '@/utils/auth';
 import { removeRouteListener } from '@/utils/route-listener';
-import { UserState } from './types';
+import {
+  UserState,
+  User,
+  Building,
+  Community,
+  Complaint,
+  Declaration,
+  Payment,
+} from './types';
 import useAppStore from '../app';
 
 const useUserStore = defineStore('user', {
   state: (): UserState => ({
-    user: undefined,
-    building: undefined,
-    community: undefined,
-    complaint: undefined,
-    declaration: undefined,
-    payment: undefined,
+    user: {} as User,
+    building: {} as Building[],
+    community: {} as Community[],
+    complaint: {} as Complaint[],
+    declaration: {} as Declaration[],
+    payment: {} as Payment[],
     role: '',
   }),
 
@@ -27,6 +35,9 @@ const useUserStore = defineStore('user', {
     },
     getAvatar(state: UserState) {
       return state.user?.username.substring(0, 2).toUpperCase();
+    },
+    isAdmin() {
+      return localStorage.getItem('currentRole') === 'admin';
     },
   },
 
@@ -59,7 +70,7 @@ const useUserStore = defineStore('user', {
       try {
         const res = await userLogin(loginForm);
         setToken(res.data.token);
-        this.role = res.data.role;
+        localStorage.setItem('currentRole', res.data.role);
       } catch (err) {
         clearToken();
         throw err;

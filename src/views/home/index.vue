@@ -1,6 +1,6 @@
 <template lang="pug">
 .home-wrapper
-  .home-header 
+  .home-header.header
     a-typography-title.title(:heading="3") 欢迎回来
   .home-content 
     a-grid(:cols="2" :colGap="24" :rowGap="30" class="grid-demo-grid" :collapsed="collapsed")
@@ -25,9 +25,6 @@
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   .home-wrapper
-    .home-header
-      padding-bottom 20px
-      border-bottom 1px solid rgba(23,12,44,.1)
     .home-content
       margin-top 30px
       .card
