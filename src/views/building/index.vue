@@ -14,7 +14,7 @@
       a-table(:data="building" :pagination="false" :hoverable="false")
         template(#columns)
           a-table-column(v-for="column in columns" :title="column.title" :data-index="column.dataIndex")
-          a-table-column
+          a-table-column(v-if="isAdmin")
             template(#cell="{record}")
               .operation(@click="handleClick(record)") 更多操作
 </template>
@@ -23,7 +23,7 @@
   import { useUserStore } from '@/store';
   import { storeToRefs } from 'pinia';
   // data
-  const { community, building, isAdmin, role } = storeToRefs(useUserStore());
+  const { community, building, isAdmin } = storeToRefs(useUserStore());
   const communityInfo = ref();
   const buildingInfo = ref();
   type Community = keyof typeof community.value;
