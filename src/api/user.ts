@@ -16,6 +16,11 @@ export interface LoginRes {
   token: string;
 }
 
+export interface ComplaintInfo {
+  subject: string;
+  content: string;
+}
+
 // regiser function
 export async function register(registerData: RegisterData) {
   return axios.post<LoginRes>('/register', registerData);
@@ -28,6 +33,10 @@ export async function login(loginData: LoginData) {
 
 export function getUserInfo() {
   return axios.get('/getUserInfo');
+}
+
+export function requestComplaint(complaintInfo: ComplaintInfo) {
+  return axios.post('/complaint', complaintInfo);
 }
 
 export function logout() {

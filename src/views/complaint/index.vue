@@ -2,7 +2,7 @@
 .complaint-wrapper
   .complaint-header.header 
     a-typography-title.title(:heading="3") 反馈中心
-    a-button.btn(type="primary" size="large") 投诉
+    a-button.btn(v-if="!isAdmin" type="primary" size="large" @click="openModal") 投诉
   .complaint-content 
     a-typography-title.processing(:heading="6") 等待处理
     a-grid(:cols="3" :colGap="24" :rowGap="30" class="grid-demo-grid" :collapsed="collapsed")
@@ -23,18 +23,25 @@
           template(#extra)
             .card-time {{ item.time }}
           .card-content {{ item.content }}
+ComplaintModal(ref="showComplaintModal")
 </template>
 <script setup name="Complaint" lang="ts">
   import { useUserStore } from '@/store';
   import { storeToRefs } from 'pinia';
   import { ref } from 'vue';
+  import ComplaintModal from './complaintModal.vue';
+
   // data
+  const showComplaintModal = ref<InstanceType<typeof ComplaintModal>>();
   const processed = ref();
   const processing = ref();
   const { complaint, isAdmin } = storeToRefs(useUserStore());
   processed.value = complaint.value.filter((item) => item.status);
   processing.value = complaint.value.filter((item) => item.status === false);
   // methods
+  const openModal = () => {
+    if (showComplaintModal.value) showComplaintModal.value.show();
+  };
   // lifecycle
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
@@ -47,6 +54,8 @@
         width 110px
         border-radius 6px
     .complaint-content
+      .card
+        width 320px
       .btn
         border-radius 6px
       .card-time

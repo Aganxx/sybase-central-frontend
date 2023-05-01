@@ -8,11 +8,11 @@ a-modal(v-model:visible='visible' :closable="false")
     a-input(v-model="memberInfo.username" :readonly="false")
     .input-title 密码
     a-input(v-model="memberInfo.password" :readonly="false")
-    .select-title 身份
+    .input-title.select 身份
     a-select(:options="selectRole" placeholder="选择身份" :onChange="submitRole")
   template(#footer)
     .modal-footer 
-      a-button.modal-ok(type="primary" @click="handleOk" :loading='loading') 确认
+      a-button.modal-ok(type="primary" @click="handleOk" :loading='loading') 确认添加
       a-button.modal-cancel(type="text" @click="handleCancel") 取消
 </template>
 <script lang="ts" setup name="ManagementModal">
