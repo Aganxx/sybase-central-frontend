@@ -50,7 +50,7 @@
         return '入住时间';
       case 'state':
         return '是否在售';
-      case 'type':
+      case 'buildingType':
         return '类型';
       case 'username':
         return '住户';

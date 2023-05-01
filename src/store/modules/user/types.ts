@@ -3,11 +3,10 @@ export type RoleType = '' | '*' | 'admin' | 'user';
 export interface Building {
   building: string;
   check_in_time: string;
-  check_out_time: string;
   community_id: string;
   level: string;
   state: boolean;
-  type: string;
+  buildingType: string;
   user_id: string;
   _id: string;
   username?: string;
@@ -43,7 +42,7 @@ export interface Payment {
   community_id: string;
   state: boolean;
   time: string;
-  type: string;
+  paymentType: string;
   _id: string;
 }
 export interface User {

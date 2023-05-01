@@ -26,7 +26,7 @@
   // type Columns = keyof (typeof payment.value)[0];
   const columns = [
     { title: '金额', dataIndex: 'amount' },
-    { title: '类型', dataIndex: 'type' },
+    { title: '类型', dataIndex: 'paymentType' },
     { title: '生效时间', dataIndex: 'time' },
   ];
   // methods

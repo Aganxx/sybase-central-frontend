@@ -10,6 +10,9 @@ export interface LoginData {
 
 export interface RegisterData extends LoginData {
   role: string;
+  building: string;
+  level: string;
+  buildingType: string;
 }
 
 export interface LoginRes {

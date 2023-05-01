@@ -10,6 +10,13 @@ a-modal(v-model:visible='visible' :closable="false")
     a-input(v-model="memberInfo.password" :readonly="false")
     .input-title.select 身份
     a-select(:options="selectRole" placeholder="选择身份" :onChange="submitRole")
+    .building-info(v-if="showBuildingInfo")
+      .input-title 楼栋
+      a-input(v-model="memberInfo.building" :readonly="false")
+      .input-title 楼层
+      a-input(v-model="memberInfo.level" :readonly="false")
+      .input-title 类型
+      a-input(v-model="memberInfo.buildingType" :readonly="false")
   template(#footer)
     .modal-footer 
       a-button.modal-ok(type="primary" @click="handleOk" :loading='loading') 确认添加
@@ -24,16 +31,21 @@ a-modal(v-model:visible='visible' :closable="false")
   const emits = defineEmits(['created']);
   const visible = ref(false);
   const loading = ref(false);
+  const showBuildingInfo = ref(false);
   const memberInfo = ref<RegisterData>({
     username: '',
     password: '',
     role: '',
+    building: '',
+    level: '',
+    buildingType: '',
   });
   const selectRole = ['管理员', '普通用户'];
 
   // methods
   const submitRole = (value: any) => {
     memberInfo.value.role = value === '管理员' ? 'admin' : 'user';
+    showBuildingInfo.value = value === '管理员' ? false : true;
   };
   const handleOk = async () => {
     try {
