@@ -2,7 +2,7 @@
 .management-wrapper 
   .management-header.header 
     a-typography-title.title(:heading="3") 用户管理
-    a-button.btn(size="large" type="primary") 添加成员
+    a-button.btn(size="large" type="primary" @click="openModal") 添加成员
   .management-content 
     .admins-list
       a-typography-title.title(:heading="6") 管理员列表
@@ -20,12 +20,15 @@
           a-table-column(v-if="isAdmin")
             template(#cell="{record}")
               .operation(@click="handleClick(record)") 更多操作
+ManagementModal(ref="showManagementModal")
 </template>
 <script setup name="Management" lang="ts">
   import { useUserStore } from '@/store';
   import { storeToRefs } from 'pinia';
   import { ref } from 'vue';
+  import ManagementModal from './managementModal.vue';
   // data
+  const showManagementModal = ref<InstanceType<typeof ManagementModal>>();
   const { usersList, adminsList, isAdmin } = storeToRefs(useUserStore());
   const columns = [
     { title: '用户ID', dataIndex: '_id' },
@@ -33,6 +36,9 @@
     { title: '创建时间', dataIndex: 'created_at' },
   ];
   // methods
+  const openModal = () => {
+    if (showManagementModal.value) showManagementModal.value.show();
+  };
   // lifecycle
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>

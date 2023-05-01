@@ -39,7 +39,7 @@ const DASHBOARD: AppRouteRecordRaw = {
       meta: {
         locale: '缴费记录',
         requiresAuth: true,
-        roles: ['*'],
+        roles: ['user'],
       },
     },
     {
