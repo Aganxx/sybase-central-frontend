@@ -27,7 +27,6 @@
   import { ref } from 'vue';
   // data
   const { usersList, adminsList, isAdmin } = storeToRefs(useUserStore());
-  console.log(`usersList.value:`, usersList);
   const columns = [
     { title: '用户ID', dataIndex: '_id' },
     { title: '用户名', dataIndex: 'username' },
