@@ -4,14 +4,14 @@
     a-typography-title.title(:heading="3") 反馈中心
     a-button.btn(v-if="!isAdmin" type="primary" size="large" @click="openModal") 投诉
   .complaint-content 
-    a-typography-title.processing(:heading="6") 等待处理
+    a-typography-title.processing(:heading="6" v-if="processing.length") 等待处理
     a-grid(:cols="3" :colGap="24" :rowGap="30" class="grid-demo-grid" :collapsed="collapsed")
       a-grid-item(v-for="item of processing")
         a-card.card
           template(#title)
             .card-title {{ item.subject }}
           template(#extra v-if="isAdmin")
-            a-button.btn(size="large" type="primary") 已解决
+            a-button.btn(size="large" type="primary" @click="handleResolve(item)") 已解决
           .card-content {{ item.content }}
           .card-time {{ item.time }}
     a-typography-title.processed(:heading="6" v-if="processed.length") 已处理
@@ -29,7 +29,10 @@ ComplaintModal(ref="showComplaintModal")
   import { useUserStore } from '@/store';
   import { storeToRefs } from 'pinia';
   import { ref } from 'vue';
+  import { resolveComplaint } from '@/api/user';
+  import type { Complaint } from '@/store/modules/user/types';
   import ComplaintModal from './complaintModal.vue';
+  import { Message } from '@arco-design/web-vue';
 
   // data
   const showComplaintModal = ref<InstanceType<typeof ComplaintModal>>();
@@ -41,6 +44,10 @@ ComplaintModal(ref="showComplaintModal")
   // methods
   const openModal = () => {
     if (showComplaintModal.value) showComplaintModal.value.show();
+  };
+  const handleResolve = async (value: Complaint) => {
+    await resolveComplaint({ id: value._id });
+    Message.success('提交成功');
   };
   // lifecycle
 </script>

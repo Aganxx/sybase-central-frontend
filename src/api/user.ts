@@ -20,6 +20,9 @@ export interface ComplaintInfo {
   subject: string;
   content: string;
 }
+export interface ResolveData {
+  id: string;
+}
 
 // regiser function
 export async function register(registerData: RegisterData) {
@@ -37,6 +40,15 @@ export function getUserInfo() {
 
 export function requestComplaint(complaintInfo: ComplaintInfo) {
   return axios.post('/complaint', complaintInfo);
+}
+export function requestDeclaration(declarationInfo: ComplaintInfo) {
+  return axios.post('/declaration', declarationInfo);
+}
+export function resolveComplaint(resolveData: ResolveData) {
+  return axios.post('/resolveComplaint', resolveData);
+}
+export function resolveDeclaration(resolveData: ResolveData) {
+  return axios.post('/resolveDeclaration', resolveData);
 }
 
 export function logout() {
