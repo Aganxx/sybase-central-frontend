@@ -13,15 +13,21 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: 'login',
-    },
-    {
-      path: '/login',
-      name: 'login',
+      // redirect: 'user-login',
       component: () => import('@/views/login/index.vue'),
       meta: {
         requiresAuth: false,
       },
+      children: [
+        {
+          path: 'login',
+          name: 'login',
+          component: () => import('@/views/login/components/login-form.vue'),
+          meta: {
+            requiresAuth: false,
+          },
+        },
+      ],
     },
     ...appRoutes,
     REDIRECT_MAIN,

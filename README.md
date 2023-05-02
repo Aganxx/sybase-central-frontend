@@ -1,3 +1,26 @@
-# sybase-central-frontend
+## 快速开始
 
-Starting to diploma project in frontend
+### Step 1
+
+```ssh
+#Clone
+
+https://github.com/Aganxx/sybase-central-frontend.git
+
+#OR
+
+git@github.com:Aganxx/sybase-central-frontend.git
+
+```
+
+### Step 2
+
+```ssh
+
+pnpm install
+
+```
+
+### 简介
+
+Vue + Arco Design + JavaScript + TypeScript + Node(v18.14.0)

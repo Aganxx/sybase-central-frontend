@@ -1,19 +1,65 @@
 export type RoleType = '' | '*' | 'admin' | 'user';
+
+export interface Building {
+  building: string;
+  check_in_time: string;
+  community_id: string;
+  level: string;
+  state: boolean;
+  buildingType: string;
+  user_id: string;
+  _id: string;
+  username?: string;
+}
+export interface Community {
+  area: string;
+  contact: string;
+  location: string;
+  name: string;
+  _id: string;
+}
+export interface Complaint {
+  community_id: string;
+  content: string;
+  status: boolean;
+  subject: string;
+  time: string;
+  user_id: string;
+  _id: string;
+}
+export interface Declaration {
+  community_id: string;
+  content: string;
+  status: boolean;
+  subject: string;
+  time: string;
+  user_id: string;
+  _id: string;
+}
+export interface Payment {
+  amount: string;
+  building_id: string;
+  community_id: string;
+  state: boolean;
+  time: string;
+  paymentType: string;
+  _id: string;
+}
+export interface User {
+  community_id: string;
+  created_at: string;
+  username: string;
+  _id: string;
+}
+
 export interface UserState {
-  name?: string;
-  avatar?: string;
-  job?: string;
-  organization?: string;
-  location?: string;
-  email?: string;
-  introduction?: string;
-  personalWebsite?: string;
-  jobName?: string;
-  organizationName?: string;
-  locationName?: string;
-  phone?: string;
-  registrationDate?: string;
-  accountId?: string;
-  certification?: number;
+  user: User;
+  building: Building[];
+  community: Community[];
+  complaint: Complaint[];
+  declaration: Declaration[];
+  payment: Payment[];
+  usersList: User[];
+  adminsList: User[];
   role: RoleType;
 }

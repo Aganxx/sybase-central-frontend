@@ -7,32 +7,37 @@ import {
 } from '@/api/user';
 import { setToken, clearToken } from '@/utils/auth';
 import { removeRouteListener } from '@/utils/route-listener';
-import { UserState } from './types';
+import {
+  UserState,
+  User,
+  Building,
+  Community,
+  Complaint,
+  Declaration,
+  Payment,
+  RoleType,
+} from './types';
 import useAppStore from '../app';
 
 const useUserStore = defineStore('user', {
   state: (): UserState => ({
-    name: undefined,
-    avatar: undefined,
-    job: undefined,
-    organization: undefined,
-    location: undefined,
-    email: undefined,
-    introduction: undefined,
-    personalWebsite: undefined,
-    jobName: undefined,
-    organizationName: undefined,
-    locationName: undefined,
-    phone: undefined,
-    registrationDate: undefined,
-    accountId: undefined,
-    certification: undefined,
+    user: {} as User,
+    building: {} as Building[],
+    community: {} as Community[],
+    complaint: {} as Complaint[],
+    declaration: {} as Declaration[],
+    payment: {} as Payment[],
+    adminsList: {} as User[],
+    usersList: {} as User[],
     role: '',
   }),
 
   getters: {
     userInfo(state: UserState): UserState {
       return { ...state };
+    },
+    getAvatar(state: UserState) {
+      return state.user?.username.substring(0, 2).toUpperCase();
     },
   },
 
@@ -56,7 +61,7 @@ const useUserStore = defineStore('user', {
     // Get user's information
     async info() {
       const res = await getUserInfo();
-
+      this.role = localStorage.getItem('currentRole') as RoleType;
       this.setInfo(res.data);
     },
 
@@ -65,6 +70,7 @@ const useUserStore = defineStore('user', {
       try {
         const res = await userLogin(loginForm);
         setToken(res.data.token);
+        localStorage.setItem('currentRole', res.data.role);
       } catch (err) {
         clearToken();
         throw err;
