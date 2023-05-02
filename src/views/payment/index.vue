@@ -19,7 +19,7 @@ PaymentModal(ref="showPaymentModal" :payment_id="payment_id")
 <script setup name="Payment" lang="ts">
   import { useUserStore } from '@/store';
   import { storeToRefs } from 'pinia';
-  import { ref } from 'vue';
+  import { ref, computed } from 'vue';
   import PaymentModal from './paymentModal.vue';
 
   // data
@@ -28,7 +28,10 @@ PaymentModal(ref="showPaymentModal" :payment_id="payment_id")
   const payment_id = ref('');
 
   const showPaymentModal = ref<InstanceType<typeof PaymentModal>>();
-  const { payment, isAdmin } = storeToRefs(useUserStore());
+  const { payment } = storeToRefs(useUserStore());
+  const isAdmin = computed(
+    () => localStorage.getItem('currentRole') === 'admin'
+  );
   paid.value = payment.value.filter((item) => item.state === true);
   unpaid.value = payment.value.filter((item) => item.state === false);
 

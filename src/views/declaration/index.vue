@@ -28,7 +28,7 @@ DeclarationModal(ref="showDeclarationModal")
 <script setup name="Declaration" lang="ts">
   import { useUserStore } from '@/store';
   import { storeToRefs } from 'pinia';
-  import { ref } from 'vue';
+  import { ref, computed } from 'vue';
   import { resolveDeclaration } from '@/api/user';
   import type { Declaration } from '@/store/modules/user/types';
   import DeclarationModal from './declarationModal.vue';
@@ -38,7 +38,10 @@ DeclarationModal(ref="showDeclarationModal")
   const showDeclarationModal = ref<InstanceType<typeof DeclarationModal>>();
   const processed = ref();
   const processing = ref();
-  const { declaration, isAdmin } = storeToRefs(useUserStore());
+  const { declaration } = storeToRefs(useUserStore());
+  const isAdmin = computed(
+    () => localStorage.getItem('currentRole') === 'admin'
+  );
   processed.value = declaration.value.filter((item) => item.status);
   processing.value = declaration.value.filter((item) => item.status === false);
   // methods

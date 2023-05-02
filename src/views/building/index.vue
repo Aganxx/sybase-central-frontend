@@ -14,24 +14,26 @@
       a-table(:data="building" :pagination="false" :hoverable="false")
         template(#columns)
           a-table-column(v-for="column in columns" :title="column.title" :data-index="column.dataIndex")
-          a-table-column(v-if="isAdmin")
+          a-table-column(v-if="admisAdminin")
             template(#cell="{record}")
               .operation(@click="handleClick(record)") 更多操作
 BuildingModal(ref="showBuildingModal" :building_id="building_id")
 </template>
 <script setup name="Building" lang="ts">
-  import { ref } from 'vue';
+  import { ref, computed } from 'vue';
   import { useUserStore } from '@/store';
   import { storeToRefs } from 'pinia';
   import BuildingModal from './buildingModal.vue';
 
   // data
   const showBuildingModal = ref<InstanceType<typeof BuildingModal>>();
-  const { community, building, isAdmin } = storeToRefs(useUserStore());
+  const { community, building } = storeToRefs(useUserStore());
   const communityInfo = ref();
   const buildingInfo = ref();
   const building_id = ref('');
-
+  const isAdmin = computed(
+    () => localStorage.getItem('currentRole') === 'admin'
+  );
   type Community = keyof typeof community.value;
   buildingInfo.value = {
     ...building.value,
@@ -39,7 +41,6 @@ BuildingModal(ref="showBuildingModal" :building_id="building_id")
   // methods
   const handleClick = (record: any) => {
     building_id.value = record._id;
-    console.log(`building_id.value:`, building_id.value);
     showBuildingModal.value && showBuildingModal.value.show();
   };
   const getInfoTitle = (key: string) => {

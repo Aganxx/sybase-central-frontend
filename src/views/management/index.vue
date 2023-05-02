@@ -25,11 +25,14 @@ ManagementModal(ref="showManagementModal")
 <script setup name="Management" lang="ts">
   import { useUserStore } from '@/store';
   import { storeToRefs } from 'pinia';
-  import { ref } from 'vue';
+  import { ref, computed } from 'vue';
   import ManagementModal from './managementModal.vue';
   // data
   const showManagementModal = ref<InstanceType<typeof ManagementModal>>();
-  const { usersList, adminsList, isAdmin } = storeToRefs(useUserStore());
+  const { usersList, adminsList } = storeToRefs(useUserStore());
+  const isAdmin = computed(
+    () => localStorage.getItem('currentRole') === 'admin'
+  );
   const columns = [
     { title: '用户ID', dataIndex: '_id' },
     { title: '用户名', dataIndex: 'username' },

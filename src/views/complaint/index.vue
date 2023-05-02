@@ -28,7 +28,7 @@ ComplaintModal(ref="showComplaintModal")
 <script setup name="Complaint" lang="ts">
   import { useUserStore } from '@/store';
   import { storeToRefs } from 'pinia';
-  import { ref } from 'vue';
+  import { ref, computed } from 'vue';
   import { resolveComplaint } from '@/api/user';
   import type { Complaint } from '@/store/modules/user/types';
   import ComplaintModal from './complaintModal.vue';
@@ -38,7 +38,10 @@ ComplaintModal(ref="showComplaintModal")
   const showComplaintModal = ref<InstanceType<typeof ComplaintModal>>();
   const processed = ref();
   const processing = ref();
-  const { complaint, isAdmin } = storeToRefs(useUserStore());
+  const { complaint } = storeToRefs(useUserStore());
+  const isAdmin = computed(
+    () => localStorage.getItem('currentRole') === 'admin'
+  );
   processed.value = complaint.value.filter((item) => item.status);
   processing.value = complaint.value.filter((item) => item.status === false);
   // methods

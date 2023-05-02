@@ -39,9 +39,6 @@ const useUserStore = defineStore('user', {
     getAvatar(state: UserState) {
       return state.user?.username.substring(0, 2).toUpperCase();
     },
-    isAdmin() {
-      return localStorage.getItem('currentRole') === 'admin';
-    },
   },
 
   actions: {
@@ -64,7 +61,6 @@ const useUserStore = defineStore('user', {
     // Get user's information
     async info() {
       const res = await getUserInfo();
-      console.log(`res:`, res);
       this.role = localStorage.getItem('currentRole') as RoleType;
       this.setInfo(res.data);
     },
