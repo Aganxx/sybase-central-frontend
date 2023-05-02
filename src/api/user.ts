@@ -61,6 +61,9 @@ export function resolveDeclaration(resolveData: ResolveData) {
 export function resolvePayment(resolveData: ResolveData) {
   return axios.post('/resolvePayment', resolveData);
 }
+export function deleteUser(resolveData: ResolveData) {
+  return axios.post('/deleteUser', resolveData);
+}
 export function buildingOperation(BuildingOperationData: BuildingOperation) {
   return axios.post('/buildingOperation', BuildingOperationData);
 }
