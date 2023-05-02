@@ -26,6 +26,11 @@ export interface ComplaintInfo {
 export interface ResolveData {
   id: string;
 }
+export interface BuildingOperation {
+  id: string;
+  paymentType: string;
+  amount: string;
+}
 
 // regiser function
 export async function register(registerData: RegisterData) {
@@ -52,6 +57,12 @@ export function resolveComplaint(resolveData: ResolveData) {
 }
 export function resolveDeclaration(resolveData: ResolveData) {
   return axios.post('/resolveDeclaration', resolveData);
+}
+export function resolvePayment(resolveData: ResolveData) {
+  return axios.post('/resolvePayment', resolveData);
+}
+export function buildingOperation(BuildingOperationData: BuildingOperation) {
+  return axios.post('/buildingOperation', BuildingOperationData);
 }
 
 export function logout() {

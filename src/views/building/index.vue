@@ -17,21 +17,31 @@
           a-table-column(v-if="isAdmin")
             template(#cell="{record}")
               .operation(@click="handleClick(record)") 更多操作
+BuildingModal(ref="showBuildingModal" :building_id="building_id")
 </template>
 <script setup name="Building" lang="ts">
   import { ref } from 'vue';
   import { useUserStore } from '@/store';
   import { storeToRefs } from 'pinia';
+  import BuildingModal from './buildingModal.vue';
+
   // data
+  const showBuildingModal = ref<InstanceType<typeof BuildingModal>>();
   const { community, building, isAdmin } = storeToRefs(useUserStore());
   const communityInfo = ref();
   const buildingInfo = ref();
+  const building_id = ref('');
+
   type Community = keyof typeof community.value;
   buildingInfo.value = {
     ...building.value,
   };
   // methods
-  const handleClick = (record: any) => {};
+  const handleClick = (record: any) => {
+    building_id.value = record._id;
+    console.log(`building_id.value:`, building_id.value);
+    showBuildingModal.value && showBuildingModal.value.show();
+  };
   const getInfoTitle = (key: string) => {
     switch (key) {
       case 'name':
@@ -96,4 +106,7 @@
           opacity .6
   .building-info
     margin-top 30px
+    .operation
+      color rgb(22, 92, 255)
+      cursor pointer
 </style>
