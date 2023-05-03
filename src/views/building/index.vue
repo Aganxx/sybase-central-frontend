@@ -14,7 +14,7 @@
       a-table(:data="building" :pagination="false" :hoverable="false")
         template(#columns)
           a-table-column(v-for="column in columns" :title="column.title" :data-index="column.dataIndex")
-          a-table-column(v-if="admisAdminin")
+          a-table-column(v-if="isAdmin")
             template(#cell="{record}")
               .operation(@click="handleClick(record)") 更多操作
 BuildingModal(ref="showBuildingModal" :building_id="building_id")

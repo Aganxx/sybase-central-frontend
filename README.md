@@ -2,25 +2,24 @@
 
 ### Step 1
 
-```ssh
-#Clone
+#### Clone
 
+```ssh
 https://github.com/Aganxx/sybase-central-frontend.git
 
 #OR
 
 git@github.com:Aganxx/sybase-central-frontend.git
-
 ```
 
 ### Step 2
 
 ```ssh
-
 pnpm install
-
 ```
 
 ### 简介
 
-Vue + Arco Design + JavaScript + TypeScript + Node(v18.14.0)
+Frontend: Vue + Arco Design + JavaScript + TypeScript + Node(v18.14.0)
+
+Backend: Laf 云平台
