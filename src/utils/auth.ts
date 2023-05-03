@@ -1,19 +1,22 @@
+import { useStorage } from '@vueuse/core';
+
 const TOKEN_KEY = 'token';
 
 const isLogin = () => {
-  return !!localStorage.getItem(TOKEN_KEY);
+  return !!getToken();
 };
 
 const getToken = () => {
-  return localStorage.getItem(TOKEN_KEY);
+  return sessionStorage.getItem(TOKEN_KEY);
 };
 
 const setToken = (token: string) => {
-  localStorage.setItem(TOKEN_KEY, token);
+  useStorage(TOKEN_KEY, token, sessionStorage);
 };
 
 const clearToken = () => {
   localStorage.removeItem(TOKEN_KEY);
+  sessionStorage.removeItem(TOKEN_KEY);
 };
 
 export { isLogin, getToken, setToken, clearToken };
